@@ -1,0 +1,31 @@
+{
+  "name": "project2",
+  "version": "1.0.0",
+  "engines": {
+    "node": "14.15.1"
+  },
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "method-override": "^3.0.0",
+    "mongoose": "^5.11.8"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daveed36/project2.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/daveed36/project2/issues"
+  },
+  "homepage": "https://github.com/daveed36/project2#readme",
+  "keywords": []
+}
