@@ -11,6 +11,20 @@ mongoose.connect(MONGODB_URI, {
   useUnifiedTopology: true,
   useFindAndModify: false,
 })
+
+// Controllers
+const productsController = require('./controllers/products_controllers.js')
+app.use('/products', productsController)
+const userController = require('./controllers/users_controllers.js')
+app.use('/users', userController)
+const sessionsController = require('./controllers/sessions_controllers.js')
+app.use('/sessions', sessionsController)
+// Routes
+app.get('/', (req, res) => {
+  res.redirect('/products')
+})
+
+
 db.on('error', (err) => console.log(err.message + ' is Mongod not running?'))
 db.on('connected', () => console.log('mongo connected: ', MONGODB_URI))
 db.on('disconnected', () => console.log('mongo disconnected'))
