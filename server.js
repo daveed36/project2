@@ -19,7 +19,9 @@ app.use('/users', userController)
 const sessionsController = require('./controllers/sessions_controllers.js')
 app.use('/sessions', sessionsController)
 // Routes
-
+app.get('/', (req, res) => {
+  res.redirect('/products')
+})
 
 
 

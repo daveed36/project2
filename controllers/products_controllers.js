@@ -12,9 +12,7 @@ const products = express.Router()
 // ====================
 // GET ROUTES
 // Routes
-products.get('/', (req, res) => {
-  res.redirect('/products')
-})
+
 
 // -- index
 products.get('/', (req, res) => {
