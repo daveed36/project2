@@ -1,23 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" dir="ltr">
   <head>
-    <%- include ('../partials/head') %>
+    <%- include ('../partials/head.ejs') %>
   </head>
   <body>
-    <h1>Hello MF</h1>
     <nav>
+      <%- include ('../partials/nav.ejs') %>
     </nav>
     <div class="container">
-      <div class="products">
-        <% products.forEach( product => { %>
-          <div class="card">
-            <h5> <%= product.name %></h5>
-            <a href="/products/<%=product.id%>">
-              <img src="<%= product.img %>" alt="An image of <%= product.name %>" /></a>
-              <h6>Price: $<%=product.price %></h6>
-          </div>
-        <% }) %>
-      </div>
+
+      <h1>Products Index Page</h1>
+      <ul>
+        <% for (let product of products ) { %>
+          <li>
+            <a href="/products/<%=product._id%>">
+              <%= product.name %>
+          </li>
+       <% } %>
+      </ul>
     </div>
   </body>
 </html>

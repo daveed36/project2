@@ -1,12 +1,29 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <meta charset="utf-8">
-    <title>new product page</title>
-    <h1>Hello new product page</h1>
     <%- include ('../partials/head.ejs') %>
   </head>
   <body>
-
+    <nav>
+      <%- include ('../partials/nav.ejs') %>
+    </nav>
+    <div class="container">
+      <h1>Products New Page</h1>
+      <form action="/products" method="POST">
+        <label for="name">Name:</label>
+        <input type="text" name="name" required />
+        <label for="color">Color:</label>
+        <input type="text" name="color" />
+        <br/>
+        <div>
+          <label for="readyToEat">
+            <input type="checkbox" id="readyToEat" name="readyToEat" />
+            <span>Is Ready to Eat</span>
+          </label>
+        </div>
+        <br>
+        <input type="submit" value="Submit">
+      <form>
+    </div>
   </body>
 </html>

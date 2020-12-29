@@ -1,92 +1,96 @@
-// ====================
-// DEPENDENCIES
-// ====================
-// -- packages and models
 const express = require('express')
-const Product = require('../models/products')
-// -- config
+const Product = require('../models/products.js')
 const products = express.Router()
 
-// ====================
-// ROUTES
-// ====================
-// GET ROUTES
-// Routes
 
+// const isAuthenticated = (req, res, next) => {
+//   if (req.session.currentUser) {
+//     return next()
+//   } else {
+//     res.redirect('/sessions/new')
+//   }
+// }
 
-// -- index
-products.get('/', (req, res) => {
-    Product.find({}, (err, foundProducts) => {
-        res.render('products/index.ejs', {
-            products: foundProducts
-        })
-    })
-})
-
-// -- new
+// products.use(isAuthenticated)
+// NEW
 products.get('/new', (req, res) => {
-    res.render('products/new.ejs')
+  res.render(
+    'products/new.ejs'
+    // , {currentUser: req.session.currentUser}
+  )
 })
 
-// -- show
-products.get('/:id', (req, res) => {
-    Product.findById(req.params.id, (err, foundProduct) => {
-        res.render('products/show.ejs', {
-            product: foundProduct
-        })
+
+// EDIT
+products.get('/:id/edit', (req, res) => {
+  Product.findById(req.params.id, (error, foundProduct) => {
+    res.render('products/edit.ejs', {
+      product: foundProduct
+      // ,currentUser: req.session.currentUser
     })
+  })
 })
 
-// -- edit
-products.get('/:id/edit', (req,res) => {
-    Product.findById(req.params.id, (err, foundProduct) => {
-        res.render('products/edit.ejs', {
-            product: foundProduct
-        })
-    })
-})
-
-// ACTION ROUTES
-// -- create
-products.post('/', (req, res) => {
-    Product.create(req.body, (err, createdProduct) => {
-        res.redirect(`/products`)
-    })
-})
-
-// -- update
-products.put('/:id', (req, res) => {
-    Product.findByIdAndUpdate(
-        req.params.id,
-        req.body,
-        { new: true },
-        (err, updatedProduct) => {
-            res.redirect(`/products/${req.params.id}`)
-        }
-    )
-})
-
-// -- delete
+// DELETE
 products.delete('/:id', (req, res) => {
-    Product.findByIdAndRemove(req.params.id, (err, deletedProduct) => {
-        res.redirect('/products')
-    })
+  Product.findByIdAndRemove(req.params.id, (err, deletedProduct) => {
+    res.redirect('/products')
+  })
 })
 
-// -- buy
-products.put('/:id/buy', (req, res) => {
-    Product.findByIdAndUpdate(
-        req.params.id,
-        { $inc: { qty: -1 } },
-        { new: true },
-        (err, updatedProduct) => {
-            res.redirect(`/products/${req.params.id}`)
-        }
-    )
+// SHOW
+products.get('/:id', (req, res) => {
+
+    Product.findById(req.params.id, (error, foundProduct) => {
+      res.render('products/show.ejs', {
+        product: foundProduct,
+        // currentUser: req.session.currentUser,
+      })
+    })
+
+})
+
+// UPDATE
+products.put('/:id', (req, res) => {
+  if (req.body.readyToEat === 'on') {
+    req.body.readyToEat = true
+  } else {
+    req.body.readyToEat = false
+  }
+  Product.findByIdAndUpdate(
+    req.params.id,
+    req.body,
+    { new: true },
+    (error, updatedModel) => {
+      res.redirect('/products')
+    }
+  )
+})
+
+// CREATE
+products.post('/', (req, res) => {
+  if (req.body.readyToEat === 'on') {
+    req.body.readyToEat = true
+  } else {
+    req.body.readyToEat = false
+  }
+  Product.create(req.body, (error, createdProduct) => {
+    res.redirect('/products')
+  })
+})
+
+// INDEX
+products.get('/', (req, res) => {
+  Product.find({}, (error, allProducts) => {
+    res.render('products/index.ejs', {
+      products: allProducts
+      // ,currentUser: req.session.currentUser
+    })
+  })
 })
 
 // SEED ROUTE
-products.get('/', (req, res) => {
+products.get('/setup/seed', (req, res) => {
   Product.create(
     [
         {
@@ -165,6 +169,7 @@ products.get('/', (req, res) => {
     }
   )
 })
+
 // Drop DB Route
 products.get(
   '/dropdatabase/cannotundo/areyoursure/reallysure/okthen',
@@ -173,7 +178,5 @@ products.get(
     res.send('You did it! You dropped the database!')
   }
 )
-// ====================
-// EXPORT
-// ====================
+
 module.exports = products
