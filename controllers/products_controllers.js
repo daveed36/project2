@@ -1,5 +1,5 @@
 const express = require('express')
-const Product = require('../models/products.js')
+const Product = require('../models/products')
 const products = express.Router()
 
 
@@ -12,82 +12,77 @@ const products = express.Router()
 // }
 
 // products.use(isAuthenticated)
-// NEW
-products.get('/new', (req, res) => {
-  res.render(
-    'products/new.ejs'
-    // , {currentUser: req.session.currentUser}
-  )
-})
-
-
-// EDIT
-products.get('/:id/edit', (req, res) => {
-  Product.findById(req.params.id, (error, foundProduct) => {
-    res.render('products/edit.ejs', {
-      product: foundProduct
-      // ,currentUser: req.session.currentUser
-    })
-  })
-})
-
-// DELETE
-products.delete('/:id', (req, res) => {
-  Product.findByIdAndRemove(req.params.id, (err, deletedProduct) => {
-    res.redirect('/products')
-  })
-})
-
-// SHOW
-products.get('/:id', (req, res) => {
-
-    Product.findById(req.params.id, (error, foundProduct) => {
-      res.render('products/show.ejs', {
-        product: foundProduct,
-        // currentUser: req.session.currentUser,
-      })
-    })
-
-})
-
-// UPDATE
-products.put('/:id', (req, res) => {
-  if (req.body.readyToEat === 'on') {
-    req.body.readyToEat = true
-  } else {
-    req.body.readyToEat = false
-  }
-  Product.findByIdAndUpdate(
-    req.params.id,
-    req.body,
-    { new: true },
-    (error, updatedModel) => {
-      res.redirect('/products')
-    }
-  )
-})
-
-// CREATE
-products.post('/', (req, res) => {
-  if (req.body.readyToEat === 'on') {
-    req.body.readyToEat = true
-  } else {
-    req.body.readyToEat = false
-  }
-  Product.create(req.body, (error, createdProduct) => {
-    res.redirect('/products')
-  })
-})
-
 // INDEX
 products.get('/', (req, res) => {
   Product.find({}, (error, allProducts) => {
     res.render('products/index.ejs', {
       products: allProducts
-      // ,currentUser: req.session.currentUser
+      ,currentUser: req.session.currentUser
     })
   })
 })
+// -- new
+products.get('/new', (req, res) => {
+    res.render('products/new.ejs')
+})
+
+
+// -- show
+products.get('/:id', (req, res) => {
+    Product.findById(req.params.id, (err, foundProduct) => {
+        res.render('products/show.ejs', {
+            product: foundProduct
+        })
+    })
+})
+// -- edit
+products.get('/:id/edit', (req,res) => {
+    Product.findById(req.params.id, (err, foundProduct) => {
+        res.render('products/edit.ejs', {
+            product: foundProduct
+        })
+    })
+})
+// ACTION ROUTES
+// -- create
+products.post('/', (req, res) => {
+    Product.create(req.body, (err, createdProduct) => {
+        res.redirect(`/products`)
+    })
+})
+
+// -- update
+products.put('/:id', (req, res) => {
+    Product.findByIdAndUpdate(
+        req.params.id,
+        req.body,
+        { new: true },
+        (err, updatedProduct) => {
+            res.redirect(`/products/${req.params.id}`)
+        }
+    )
+})
+
+// -- delete
+products.delete('/:id', (req, res) => {
+    Product.findByIdAndRemove(req.params.id, (err, deletedProduct) => {
+        res.redirect('/products')
+    })
+})
+
+// -- buy
+products.put('/:id/buy', (req, res) => {
+    Product.findByIdAndUpdate(
+        req.params.id,
+        { $inc: { qty: -1 } },
+        { new: true },
+        (err, updatedProduct) => {
+            res.redirect(`/products/${req.params.id}`)
+        }
+    )
+})
+
+
 
 // SEED ROUTE
 products.get('/setup/seed', (req, res) => {
