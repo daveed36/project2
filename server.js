@@ -40,10 +40,6 @@ app.use('/sessions', sessionsController)
 app.get('/', (req, res) => {
   res.redirect('/products')
 })
-// Routes
-app.get('/', (req, res) => {
-  res.redirect('/products')
-})
 
 
 

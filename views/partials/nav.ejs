@@ -1,7 +1,7 @@
 <a href="/products" class="brand-logo left">Products</a>
 <ul class="right">
   <li><a href="/product/new">Create a new product</a></li>
-  <% if (currentUser) {%>
+  <% if(currentUser) {%>
     <li>Welcome, <%= currentUser.username%></li>
     <li>
       <form class="" action="/sessions?_method=DELETE"method="post">

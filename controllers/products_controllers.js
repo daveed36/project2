@@ -23,7 +23,9 @@ products.get('/', (req, res) => {
 })
 // -- new
 products.get('/new', (req, res) => {
-    res.render('products/new.ejs')
+    res.render('products/new.ejs'
+    , {currentUser: req.session.currentUser}
+  )
 })
 
 
@@ -32,6 +34,7 @@ products.get('/:id', (req, res) => {
     Product.findById(req.params.id, (err, foundProduct) => {
         res.render('products/show.ejs', {
             product: foundProduct
+            ,currentUser: req.session.currentUser
         })
     })
 })
@@ -40,6 +43,7 @@ products.get('/:id/edit', (req,res) => {
     Product.findById(req.params.id, (err, foundProduct) => {
         res.render('products/edit.ejs', {
             product: foundProduct
+            ,currentUser: req.session.currentUser
         })
     })
 })
@@ -47,7 +51,7 @@ products.get('/:id/edit', (req,res) => {
 // -- create
 products.post('/', (req, res) => {
     Product.create(req.body, (err, createdProduct) => {
-        res.redirect(`/products`)
+        res.redirect(`/product/new`)
     })
 })
 
