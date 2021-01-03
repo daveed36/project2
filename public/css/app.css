@@ -1,0 +1,14 @@
+*{
+
+}
+footer{
+display: flex;
+direction: inherit;
+  position: absolute;
+align-items: center;
+list-style: none;
+margin: 20px;
+padding: 30px;
+background-color: red;
+width: 100%;
+}

@@ -14,18 +14,20 @@
         <input type="text" name="name" value="<%=product.name%>" />
         <label for="color">Color:</label>
         <input type="text" name="color" value="<%=product.color%>" />
+        <label for="About">About:</label>
+        <input type="text" name="description" value="<%=product.description %>" />
         <br/>
         <div>
-          <label for="readyToEat">
+          <label for="free delivery">
             <input
               type="checkbox"
-              id="readyToEat"
-              name="readyToEat"
+              id="freeDelivery"
+              name="freeDelivery"
               <% if(product.readyToEat === true){ %>
                 checked
               <% } %>
             />
-            <span>Is Ready to Eat</span>
+            <span>Free Delivery</span>
           </label>
         </div>
         <br>

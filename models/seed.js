@@ -7,9 +7,9 @@ module.exports = [
       qty: 99
     },
     {
-      name: 'Tom Nook',
+      name: 'Led Light theraphy',
       description: 'Tom Nook is a tanuki with brown fur. He has half-closed, blue eyes with a dark brown, mask-like patch of fur around them. The tip of his nose, his paws, tail, and ears are dark brown.',
-      img: 'https://animal-crossing.com/amiibo/assets/img/cards/NVL-C-MAAB-USZ-F0(0)002.png',
+      img: '//cdn.shopify.com/s/files/1/0428/7804/2265/products/tila-led-skin-therapy-latestechs-844682_1200x.jpg?v=1598296833',
       price: 7000,
       qty: 1
     },
@@ -70,4 +70,3 @@ module.exports = [
       qty: 54
     }
 ]
-  

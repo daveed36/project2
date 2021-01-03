@@ -5,7 +5,7 @@ const app = express()
 const db = mongoose.connection
 require('dotenv').config()
 const session = require('express-session')
-
+// const multer = require('multer')
 
 
 const PORT = process.env.PORT || 3003
@@ -17,6 +17,7 @@ mongoose.connect(MONGODB_URI, {
 })
 
 app.use(express.static('public'))
+app.use(express.static('public/css'))
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 app.use(methodOverride('_method'))
@@ -27,6 +28,7 @@ app.use(
     saveUninitialized: false,
   })
 )
+
 
 
 // Controllers

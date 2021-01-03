@@ -3,15 +3,15 @@ const Product = require('../models/products')
 const products = express.Router()
 
 
-// const isAuthenticated = (req, res, next) => {
-//   if (req.session.currentUser) {
-//     return next()
-//   } else {
-//     res.redirect('/sessions/new')
-//   }
-// }
+const isAuthenticated = (req, res, next) => {
+  if (req.session.currentUser) {
+    return next()
+  } else {
+    res.redirect('/sessions/new')
+  }
+}
 
-// products.use(isAuthenticated)
+products.use(isAuthenticated)
 // INDEX
 products.get('/', (req, res) => {
   Product.find({}, (error, allProducts) => {
@@ -93,16 +93,16 @@ products.get('/setup/seed', (req, res) => {
   Product.create(
     [
         {
-          name: 'Isabelle',
-          description: 'Isabelle is friendly, polite, hardworking, and eager to help the player in any tasks she can assist with.',
-          img: 'https://animal-crossing.com/amiibo/assets/img/cards/NVL-C-MAAA-USZ-F0(0)001.png',
+          name: '3D FACE ROLLER',
+          description: 'Let our face roller help prep your skin the right way. From de-puffing to calming and contouring. The roller helps promote lymphatic drainage and enhances blood circulation. GlorialSkin™ Face Roller is also known for its calming properties and aids self-love! .',
+          img: '//cdn.shopify.com/s/files/1/0428/7804/2265/files/7_H4b39f5e5695a42a79a76d692e1b679b8E_600x_adbe3027-3ed7-4326-9a43-d06699b20d21_5000x.png?v=1596223946 5000w',
           price: 5,
           qty: 99
         },
         {
-          name: 'Tom Nook',
-          description: 'Tom Nook is a tanuki with brown fur. He has half-closed, blue eyes with a dark brown, mask-like patch of fur around them. The tip of his nose, his paws, tail, and ears are dark brown.',
-          img: 'https://animal-crossing.com/amiibo/assets/img/cards/NVL-C-MAAB-USZ-F0(0)002.png',
+          name: 'LED Light Therapy',
+          description: 'Great anti-aging benefits because of its ability to stimulate collagen and elastin production..',
+          img: '//cdn.shopify.com/s/files/1/0428/7804/2265/products/tila-led-skin-therapy-latestechs-844682_1200x.jpg?v=1598296833',
           price: 7000,
           qty: 1
         },
