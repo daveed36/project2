@@ -15,10 +15,12 @@
           <li>
             <a href="/products/<%=product._id%>">
               <%= product.name %>
+              <img class="indexPics" src="<%= product.img %>">
           </li>
        <% } %>
       </ul>
     </div>
-    <%- include ('../partials/footer.ejs') %>
+
   </body>
+  <%- include ('../partials/footer.ejs') %>
 </html>

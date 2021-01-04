@@ -11,7 +11,7 @@ const isAuthenticated = (req, res, next) => {
   }
 }
 
-products.use(isAuthenticated)
+
 // INDEX
 products.get('/', (req, res) => {
   Product.find({}, (error, allProducts) => {
@@ -21,8 +21,9 @@ products.get('/', (req, res) => {
     })
   })
 })
+
 // -- new
-products.get('/new', (req, res) => {
+products.get('/new',isAuthenticated, (req, res) => {
     res.render('products/new.ejs'
     , {currentUser: req.session.currentUser}
   )
@@ -39,7 +40,7 @@ products.get('/:id', (req, res) => {
     })
 })
 // -- edit
-products.get('/:id/edit', (req,res) => {
+products.get('/:id/edit',isAuthenticated, (req,res) => {
     Product.findById(req.params.id, (err, foundProduct) => {
         res.render('products/edit.ejs', {
             product: foundProduct
@@ -48,8 +49,9 @@ products.get('/:id/edit', (req,res) => {
     })
 })
 // ACTION ROUTES
+// products.use(isAuthenticated)
 // -- create
-products.post('/', (req, res) => {
+products.post('/', isAuthenticated,(req, res) => {
     Product.create(req.body, (err, createdProduct) => {
         res.redirect(`/product/new`)
     })
@@ -68,7 +70,7 @@ products.put('/:id', (req, res) => {
 })
 
 // -- delete
-products.delete('/:id', (req, res) => {
+products.delete('/:id',isAuthenticated, (req, res) => {
     Product.findByIdAndRemove(req.params.id, (err, deletedProduct) => {
         res.redirect('/products')
     })
@@ -103,65 +105,17 @@ products.get('/setup/seed', (req, res) => {
           name: 'LED Light Therapy',
           description: 'Great anti-aging benefits because of its ability to stimulate collagen and elastin production..',
           img: '//cdn.shopify.com/s/files/1/0428/7804/2265/products/tila-led-skin-therapy-latestechs-844682_1200x.jpg?v=1598296833',
-          price: 7000,
-          qty: 1
+          price: 35,
+          qty: 549,
         },
         {
-          name: 'Sable',
-          description: 'Sable\'s life is very focused around the world she grew up in- she is happy with the slow pace of the country life and has proven to be firm friends with others from the village, most notably, Tom Nook. She has low self-confidence and is an introverted person.',
-          img: 'https://animal-crossing.com/amiibo/assets/img/cards/NVL-C-MAAD-USZ-F0(0)004.png',
+          name: 'SILICONE FACIAL CLEANSING BRUSH',
+          description: 'Silicone Facial Cleansing Brush is a facial cleansing massager that uses sonic pulses and hundreds of soft silicone bristles that reach deep into your pores to remove acne-causing impurities, soften skin, and reduce signs of aging.',
+          img: '//cdn.shopify.com/s/files/1/0428/7804/2265/files/Untitled_design_2_800x_946b7f86-1c97-4d0d-8feb-4cc137191ac0_5000x.png?v=1596224069 5000w',
           price: 25,
-          qty: 0
-        },
-        {
-          name: 'Redd',
-          img: 'https://animal-crossing.com/amiibo/assets/img/cards/NVL-C-MAAM-USZ-F0(0)012.png',
-          description: 'Redd, also known as Crazy Redd and Jolly Redd, is an untrustworthy kitsune, or fox',
-          qty: 5,
-          price: 1000000
-        },
-        {
-          name: 'Pascal',
-          img: 'https://animal-crossing.com/amiibo/assets/img/cards/NVL-C-MAAK-USZ-F0(0)010.png',
-          description: 'Pascal is a philosophical nomad who spends his days traveling the seven seas (or as he would put it, the one connected sea), talking to strangers, and eating scallops',
-          price: 17,
-          qty: 72
-        },
-        {
-          name: 'Saharah',
-          img: 'hhttps://animal-crossing.com/amiibo/assets/img/cards/NVL-C-MAAN-USZ-F0(0)013.png',
-          description: 'Saharah is a camel in the Animal Crossing series that trades in rare carpets and wallpaper to the player',
-          price: 887,
-          qty: 0
-        },
-        {
-          name: 'Bob',
-          img: 'https://animal-crossing.com/amiibo/assets/img/cards/NVL-C-MAAT-USZ-F0(0)018.png',
-          description: 'Bob is a lazy cat villager who has appeared in every game of the Animal Crossing series. His name is most likely based off the bobcat.',
-          price: 6,
-          qty: 913462
-        },
-        {
-          name: 'Fauna',
-          img: 'https://animal-crossing.com/amiibo/assets/img/cards/NVL-C-MAAU-USZ-F0(0)019.png',
-          description: 'Fauna has a normal personality, and frequently acts kind towards the player.',
-          price: 3199,
-          qty: 14
-        },
-        {
-          name: 'Bluebear',
-          img: 'https://animal-crossing.com/amiibo/assets/img/cards/NVL-C-MABH-USZ-F0(0)032.png',
-          description: 'As her name suggests, Bluebear is a light-blue bear. She has dark blue hair and a white-tipped muzzle and paws, complete with white inside her ears with a dark blue outside. She has dark, wide eyes and light pink blush.',
-          price: 49.99,
-          qty: 49
-        },
-        {
-          name: 'Kiki',
-          img: 'https://animal-crossing.com/amiibo/assets/img/cards/NVL-C-MABK-USZ-F0(0)034.png',
-          description: 'Kiki is a black cat with yellow eyes and black pupils. Her ears are bright magenta inside, and she has a pushed up, pudgy nose.',
-          price: 1,
-          qty: 54
+          qty: 398
         }
+
     ],
     (error, data) => {
       res.redirect('/products')
