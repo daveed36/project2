@@ -8,21 +8,16 @@
     <li> <a style=>Welcome, <%= currentUser.username%></a></li>
     <li><a href="/products/new">Create a new product</a></li>
     <li>
-
       <form class="" action="/sessions?_method=DELETE"method="post">
         <input type="submit" value="Log Out"class="btn-small red">
-
         <li><a href="/products/about">About Us</a></li>
         <li><a href="products/setup/seed">Reload Items</a></li>
         <li><a href="products/dropdatabase/cannotundo/areyoursure/reallysure/okthen">Drop Items</a></li>
-
-
       </form>
     </li>
   <%} else {%>
     <li><a href="/users/new">Sign Up</a> </li>
     <li><a href="/sessions/new">Log In</a> </li>
     <li><a href="/products/about">About Us</a></li>
-
   <%}%>
 </ul>

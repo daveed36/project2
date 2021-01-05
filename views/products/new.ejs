@@ -8,14 +8,20 @@
       <%- include ('../partials/nav.ejs') %>
     </nav>
     <div class="container">
-      <h1>Products New Page</h1>
+      <h1>Add your Wishlist product</h1>
       <form action="/products" method="POST">
         <label for="name">Name:</label>
         <input type="text" name="name" required />
-        <label for="color">Category:</label>
+        <label for="Category">Category:</label>
         <input type="text" name="color" />
         <label for="color">About:</label>
         <input type="text" name="color" />
+        <label for="price">Price:$</label>
+        <input type="text" name="price" />
+        <label for="Quantity">Quantity:</label>
+        <input type="text" name="qty" />
+        <label for="color">Picture:</label>
+        <input type="file" name="image" />
         <br/>
         <div>
           <label for="freeDelivery">
