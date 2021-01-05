@@ -17,19 +17,18 @@
             <% } else { %>
               <h6>Only <%= product.qty %> remaining</h6>
               <form action="/products/<%=product.id%>/buy?_method=put" method="POST">
-                <button type="submit">BUY</button>
+                <button class="glow-on-hover"type="submit">BUY Now</button>
               </form>
             <% } %>
             <h4>Price: $<%= product.price %></h4>
         </div>
         <div class="admin-actions">
-          <a href="/products/<%=product.id%>/edit"><button type="button" name="button" class="edit-button">Edit</button></a>
+          <a href="/products/<%=product.id%>/edit"><button type="button" name="button" class="btn btn-info btn-lg btn3d">Edit</button></a>
           <form action="/products/<%=product.id%>?_method=DELETE" method="POST">
-            <button type="submit" class="delete-button">DELETE</button>
+            <button class="del" type="submit" class="delete-button">DELETE</button>
           </form>
         </div>
     </div>
-    <%- include ('../partials/footer.ejs') %>
   </body>
 
 </html>

@@ -12,7 +12,8 @@ const productSchema = Schema({
     description: String,
     img: String,
     price: { type: Number, min: 0 },
-    qty: { type: Number, min: 0 }
+    qty: { type: Number, min: 0 },
+    freeDelivery : Boolean
 })
 
 // ====================

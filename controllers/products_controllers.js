@@ -134,7 +134,7 @@ products.get(
   '/dropdatabase/cannotundo/areyoursure/reallysure/okthen',
   (req, res) => {
     Product.collection.drop()
-    res.send('You did it! You dropped the database!')
+    res.redirect('/products')
   }
 )
 
