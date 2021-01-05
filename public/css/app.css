@@ -6,7 +6,7 @@ font-family:Roboto;
 footer{
 display: flex;
 
-  position: fixed;
+  position: relative;
 align-items: center;
 list-style: none;
 bottom: 0;
@@ -30,7 +30,7 @@ align-items: center;
 }
 nav{
   background-color:black;
-  position: fixed;
+  list-style: none
 }
 .subm
 {

@@ -59,7 +59,7 @@ products.get('/:id/edit',isAuthenticated, (req,res) => {
 // -- create
 products.post('/', isAuthenticated,(req, res) => {
     Product.create(req.body, (err, createdProduct) => {
-        res.redirect(`/product/new`)
+        res.redirect(`/products/new`)
     })
 })
 
