@@ -10,6 +10,12 @@ const isAuthenticated = (req, res, next) => {
     res.redirect('/sessions/new')
   }
 }
+// -- new
+products.get('/about', (req, res) => {
+    res.render('products/about.ejs'
+    , {currentUser: req.session.currentUser}
+  )
+})
 
 
 // INDEX

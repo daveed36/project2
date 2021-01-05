@@ -1,5 +1,8 @@
-<a href="/products" class="brand-logo left">Products</a>
+<a href="/products" class="brand-logo left">
+  <img src="//cdn.shopify.com/s/files/1/0428/7804/2265/files/GLORIAL_SKIN_1_410x.png?v=1596191747" alt="">
+</a>
 <ul class="right">
+
 
   <% if(currentUser) {%>
     <li style="color:blue;font-size:20px;padding:10px;">Welcome, <%= currentUser.username%></li>
@@ -9,11 +12,14 @@
       <form class="" action="/sessions?_method=DELETE"method="post">
         <input type="submit" value="Log Out"class="btn-small red">
 
+        <li><a href="/products/about">About Us</a></li>
+
 
       </form>
     </li>
   <%} else {%>
     <li><a href="/users/new">Sign Up</a> </li>
     <li><a href="/sessions/new">Log In</a> </li>
+    <li><a href="/products/about">About Us</a></li>
   <%}%>
 </ul>

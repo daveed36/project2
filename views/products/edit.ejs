@@ -8,7 +8,7 @@
       <%- include ('../partials/nav.ejs') %>
     </nav>
     <div class="container">
-      <h1>Products New Page</h1>
+      <h1>Customize Your Product</h1>
       <form action="/products/<%=product.id%>?_method=PUT" method="POST">
         <label for="name">Name:</label>
         <input type="text" name="name" value="<%=product.name%>" />
@@ -23,7 +23,7 @@
               type="checkbox"
               id="freeDelivery"
               name="freeDelivery"
-              <% if(product.readyToEat === true){ %>
+              <% if(product.freeDelivery === true){ %>
                 checked
               <% } %>
             />
