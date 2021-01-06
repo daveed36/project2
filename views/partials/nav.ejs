@@ -7,6 +7,7 @@
   <% if(currentUser) {%>
     <li> <a style=>Welcome, <%= currentUser.username%></a></li>
     <li><a href="/products/new">Create a new product</a></li>
+    <li><a href="/">Home</a> </li>
     <li>
       <form class="" action="/sessions?_method=DELETE"method="post">
         <input type="submit" value="Log Out"class="btn-small red">
