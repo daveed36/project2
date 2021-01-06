@@ -9,15 +9,15 @@
     </nav>
     <div class="container">
       <h1>New User</h1>
-      <form action="/users" method="POST">
+      <form class="newUserForm"action="/users" method="POST">
         <label for="name">User Name:</label>
-        <input type="text" name="username" required/>
+        <input type="text" placeholder="Usre Name" name="username" required/>
         <label for="color">Password:</label>
-        <input type="password" name="password" />
+        <input type="password" placeholder="Password" name="password" />
         <label for="color">Profile picture:</label>
-        <input type="file" name="image" />
+        <input type="url" placeholder="Picture url" name="image" />
         <br>
-        <input type="submit" value="Submit">
+        <input class="subm" type="submit" value="Submit">
       <form>
     </div>
   </body>

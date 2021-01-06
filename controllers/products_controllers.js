@@ -83,7 +83,7 @@ products.delete('/:id',isAuthenticated, (req, res) => {
 })
 
 // -- buy
-products.put('/:id/buy', (req, res) => {
+products.put('/:id/buy',isAuthenticated, (req, res) => {
     Product.findByIdAndUpdate(
         req.params.id,
         { $inc: { qty: -1 } },
